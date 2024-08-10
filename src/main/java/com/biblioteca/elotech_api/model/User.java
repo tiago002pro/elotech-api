@@ -1,5 +1,6 @@
 package com.biblioteca.elotech_api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     @Column(name = "registration_date")
     private Date registrationDate;
 

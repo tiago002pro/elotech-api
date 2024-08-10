@@ -1,5 +1,6 @@
 package com.biblioteca.elotech_api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,6 +23,7 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
     @Column(name = "publication_date")
     private Date publicationDate;
 
