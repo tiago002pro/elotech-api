@@ -5,6 +5,7 @@ import com.biblioteca.elotech_api.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -44,5 +45,10 @@ public class BookController {
     @GetMapping("/all")
     public ResponseEntity<List<Book>> getAll() {
         return ResponseEntity.ok((service).findAll());
+    }
+
+    @GetMapping("/search-books")
+    public ResponseEntity searchBooks(@RequestParam String title) {
+        return ResponseEntity.ok((service).searchBooks(title));
     }
 }
