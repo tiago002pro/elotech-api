@@ -37,7 +37,7 @@ public class BookService {
         return this.repository.findAll();
     }
 
-    public List<BookDTO> searchBooks(String query) {
+    public List<BookDTO> searchGoogleBooks(String query) {
         List<Map<String, Object>> result = this.googleBooksClient.searchBook(query);
 
         if (Objects.nonNull(result) && !result.isEmpty()) {
@@ -45,5 +45,20 @@ public class BookService {
         }
 
         return null;
+    }
+
+    public List<Book> addBookToLibrary(String id) {
+        List<BookDTO> bookList = this.searchGoogleBooks(id);
+
+        if (Objects.nonNull(bookList) && !bookList.isEmpty()) {
+            return this.addBookListToLibrary(bookList);
+        }
+
+        return null;
+    }
+
+    public List<Book> addBookListToLibrary(List<BookDTO> bookDTO) {
+        List<Book> bookList = bookDTO.stream().map(Book::new).collect(Collectors.toList());
+        return repository.saveAll(bookList);
     }
 }

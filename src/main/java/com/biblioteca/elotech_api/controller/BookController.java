@@ -1,11 +1,11 @@
 package com.biblioteca.elotech_api.controller;
 
+import com.biblioteca.elotech_api.dto.BookDTO;
 import com.biblioteca.elotech_api.model.Book;
 import com.biblioteca.elotech_api.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -47,8 +47,18 @@ public class BookController {
         return ResponseEntity.ok((service).findAll());
     }
 
-    @GetMapping("/search-books")
-    public ResponseEntity searchBooks(@RequestParam String title) {
-        return ResponseEntity.ok((service).searchBooks(title));
+    @GetMapping("/search-googke-books")
+    public ResponseEntity searchGoogleBooks(@RequestParam String title) {
+        return ResponseEntity.ok((service).searchGoogleBooks(title));
+    }
+
+    @PostMapping("/add-book-to-library")
+    public ResponseEntity addBookToLibrary(@RequestParam String id) {
+        return ResponseEntity.ok((service).addBookToLibrary(id));
+    }
+
+    @PostMapping("/add-book-list-to-library")
+    public ResponseEntity addBookListToLibrary(@RequestBody List<BookDTO> dtoList) {
+        return ResponseEntity.ok((service).addBookListToLibrary(dtoList));
     }
 }
