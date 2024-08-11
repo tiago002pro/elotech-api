@@ -61,7 +61,12 @@ public class BookDTO {
             }
         }
 
-        this.category = "";
+        if (Objects.nonNull(volumeInfo.get("categories"))) {
+            List<String> authors = (List<String>) volumeInfo.get("categories");
+            if (!authors.isEmpty()) {
+                this.category = String.join(", ", authors);
+            }
+        }
 
         if (Objects.nonNull(volumeInfo.get("imageLinks"))) {
             Map<String, Object> images = (Map<String, Object>) volumeInfo.get("imageLinks");
