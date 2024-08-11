@@ -61,4 +61,8 @@ public class BookService {
         List<Book> bookList = bookDTO.stream().map(Book::new).collect(Collectors.toList());
         return repository.saveAll(bookList);
     }
+
+    public List<Book> getRecommendationBooks(Long userId) {
+        return this.repository.getRecommendationBooks(userId);
+    }
 }

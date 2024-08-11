@@ -61,4 +61,9 @@ public class BookController {
     public ResponseEntity addBookListToLibrary(@RequestBody List<BookDTO> dtoList) {
         return ResponseEntity.ok((service).addBookListToLibrary(dtoList));
     }
+
+    @GetMapping("/recommendation-books")
+    public ResponseEntity getRecommendationBooks(@RequestParam Long userId) {
+        return ResponseEntity.ok((service).getRecommendationBooks(userId));
+    }
 }
