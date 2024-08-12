@@ -1,15 +1,20 @@
 package com.biblioteca.elotech_api.service;
 
 import com.biblioteca.elotech_api.dto.BookDTO;
+import com.biblioteca.elotech_api.exception.BusinesException;
 import com.biblioteca.elotech_api.integration.GoogleBooksClient;
 import com.biblioteca.elotech_api.model.Book;
 import com.biblioteca.elotech_api.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static java.lang.String.format;
+import static org.springframework.util.Assert.notNull;
 
 @Service
 public class BookService {
@@ -38,13 +43,18 @@ public class BookService {
     }
 
     public List<BookDTO> searchGoogleBooks(String query) {
-        List<Map<String, Object>> result = this.googleBooksClient.searchBook(query);
+        try {
+            notNull(query, "Parâmetro é obrigatório!");
+            List<Map<String, Object>> result = this.googleBooksClient.searchBook(query);
 
-        if (Objects.nonNull(result) && !result.isEmpty()) {
-            return result.stream().map(BookDTO::new).collect(Collectors.toList());
+            if (Objects.nonNull(result) && !result.isEmpty()) {
+                return result.stream().map(BookDTO::new).collect(Collectors.toList());
+            }
+
+            return new ArrayList<>();
+        } catch (Exception e) {
+            throw new BusinesException(format("Erro ao buscar os livros no Google Books. Parâmetro = %s", query), e);
         }
-
-        return null;
     }
 
     public List<Book> addBookToLibrary(String id) {
