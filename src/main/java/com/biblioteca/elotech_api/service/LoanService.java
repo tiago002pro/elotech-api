@@ -6,7 +6,6 @@ import com.biblioteca.elotech_api.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 import static org.springframework.util.Assert.notNull;
 

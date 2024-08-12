@@ -47,11 +47,6 @@ public class BookController {
         return ResponseEntity.ok((service).findAll());
     }
 
-    @GetMapping("/books-available")
-    public ResponseEntity<List<Book>> getAllBooksAvailable() {
-        return ResponseEntity.ok((service).getAllBooksAvailable());
-    }
-
     @GetMapping("/search-googke-books")
     public ResponseEntity searchGoogleBooks(@RequestParam String title) {
         return ResponseEntity.ok((service).searchGoogleBooks(title));
