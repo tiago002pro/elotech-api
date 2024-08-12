@@ -1,6 +1,7 @@
 package com.biblioteca.elotech_api.model;
 
 import com.biblioteca.elotech_api.dto.BookDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Book {
     @Column(name = "isbn")
     private String isbn;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "publication_date")
     private Date publicationDate;
 
