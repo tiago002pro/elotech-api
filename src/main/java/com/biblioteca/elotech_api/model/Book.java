@@ -40,4 +40,13 @@ public class Book {
         this.publicationDate = dto.getPublicationDate();
         this.category = dto.getCategory();
     }
+
+    public Book(Long id, String title, String author, String isbn, Date publicationDate, String category) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.publicationDate = publicationDate;
+        this.category = category;
+    }
 }

@@ -16,6 +16,14 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> getAllBooksAvailable();
 
     @Query(nativeQuery = true,
+            value = " SELECT count(*) > 0 FROM book b " +
+                    " WHERE NOT exists ( " +
+                    "   SELECT 1 FROM loan l WHERE l.book_id = b.id AND l.status = 'OPEN' " +
+                    " )" +
+                    "   AND b.id = :id ")
+    Boolean checkIfTheBookIsAvailable(@Param("id") Long id);
+
+    @Query(nativeQuery = true,
             value = " WITH categories AS ( " +
                     "    SELECT " +
                     "       b.id AS book_id, " +

@@ -3,13 +3,14 @@ package com.biblioteca.elotech_api.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Table(name = "loan")
 @Entity
 @Data
+@NoArgsConstructor
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +34,13 @@ public class Loan {
 
     @Column(name = "status")
     private String status;
+
+    public Loan(Long id, User user, Book book, Date loanDate, Date returnDate, String status) {
+        this.id = id;
+        this.user = user;
+        this.book = book;
+        this.loanDate = loanDate;
+        this.returnDate = returnDate;
+        this.status = status;
+    }
 }

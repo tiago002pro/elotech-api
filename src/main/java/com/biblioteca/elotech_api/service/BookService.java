@@ -79,4 +79,8 @@ public class BookService {
     public List<Book> getRecommendationBooks(Long userId) {
         return this.repository.getRecommendationBooks(userId);
     }
+
+    public Boolean checkIfTheBookIsAvailable(Long id) {
+        return this.repository.checkIfTheBookIsAvailable(id);
+    }
 }
