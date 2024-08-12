@@ -9,6 +9,13 @@ import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
     @Query(nativeQuery = true,
+            value = " SELECT * FROM book b " +
+                    " WHERE NOT exists ( " +
+                    "   SELECT 1 FROM loan l WHERE l.book_id = b.id AND l.status = 'OPEN' " +
+                    " )")
+    List<Book> getAllBooksAvailable();
+
+    @Query(nativeQuery = true,
             value = " WITH categories AS ( " +
                     "    SELECT " +
                     "       b.id AS book_id, " +

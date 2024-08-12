@@ -42,6 +42,10 @@ public class BookService {
         return this.repository.findAll();
     }
 
+    public List<Book> getAllBooksAvailable() {
+        return this.repository.getAllBooksAvailable();
+    }
+
     public List<BookDTO> searchGoogleBooks(String query) {
         try {
             notNull(query, "Parâmetro é obrigatório!");
