@@ -6,6 +6,7 @@ import com.biblioteca.elotech_api.repository.LoanRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.springframework.util.Assert.notNull;
 
@@ -25,12 +26,17 @@ public class LoanService {
         notNull(loan.getBook(), "Livro é obrigatório!");
         notNull(loan.getStatus(), "Situação é obrigatória!");
 
-        Boolean avalible = this.bookService.checkIfTheBookIsAvailable(loan.getBook().getId());
-        if (avalible) {
+        Boolean bookAvalible = this.bookService.checkIfTheBookIsAvailable(loan.getBook().getId());
+
+        if (bookAvalible) {
             return repository.save(loan);
         } else {
             throw new BusinesException("Livro indisponível para o empréstimo!");
         }
+    }
+
+    public Loan update(Loan loan) {
+        return repository.save(loan);
     }
 
     public Loan load(Long id) {

@@ -42,6 +42,21 @@ public class BookService {
         return this.repository.findAll();
     }
 
+    public List<Map<String, Object>> searchForBooksOnGoogleBooks(String query) {
+        try {
+            notNull(query, "Parâmetro é obrigatório!");
+            List<Map<String, Object>> result = this.googleBooksClient.searchBook(query);
+
+            if (Objects.nonNull(result) && !result.isEmpty()) {
+                return result;
+            }
+
+            return new ArrayList<>();
+        } catch (Exception e) {
+            throw new BusinesException(format("Erro ao buscar os livros no Google Books. Parâmetro = %s", query), e);
+        }
+    }
+
     public List<BookDTO> searchGoogleBooks(String query) {
         try {
             notNull(query, "Parâmetro é obrigatório!");

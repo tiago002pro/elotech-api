@@ -17,12 +17,12 @@ public class BookController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<Book> create(@RequestBody Book book) {
         return ResponseEntity.ok((service).save(book));
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<Book> update(@RequestBody Book book) {
         return ResponseEntity.ok((service).save(book));
     }
@@ -45,6 +45,11 @@ public class BookController {
     @GetMapping("/all")
     public ResponseEntity<List<Book>> getAll() {
         return ResponseEntity.ok((service).findAll());
+    }
+
+    @GetMapping("/search-for-books-on-googke-books")
+    public ResponseEntity searchForBooksOnGoogleBooks(@RequestParam String title) {
+        return ResponseEntity.ok((service).searchForBooksOnGoogleBooks(title));
     }
 
     @GetMapping("/search-googke-books")

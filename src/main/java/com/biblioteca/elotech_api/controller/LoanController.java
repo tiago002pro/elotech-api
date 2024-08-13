@@ -16,14 +16,14 @@ public class LoanController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/save")
     public ResponseEntity<Loan> create(@RequestBody Loan loan) {
         return ResponseEntity.ok((service).save(loan));
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<Loan> update(@RequestBody Loan loan) {
-        return ResponseEntity.ok((service).save(loan));
+        return ResponseEntity.ok((service).update(loan));
     }
 
     @GetMapping("/{id}")

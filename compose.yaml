@@ -1,11 +1,9 @@
 services:
-  renascer-api:
-    image: postgres:11-alpine
-    restart: always
-    container_name: elotech-api
-    ports:
-      - 7778:5432
+  postgres:
+    image: 'postgres:latest'
     environment:
-      POSTGRES_DB: elotech
-      POSTGRES_USER: elotech
-      POSTGRES_PASSWORD: 123456
+      - 'POSTGRES_DB=elotech'
+      - 'POSTGRES_PASSWORD=123456'
+      - 'POSTGRES_USER=elotech'
+    ports:
+      - 7777:5432
