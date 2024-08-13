@@ -12,8 +12,9 @@ Gestão de Biblioteca com Recomendação de Livros.
 1. Clone o repositório:
    ```
    git clone https://github.com/tiago002pro/elotech-api.git
-   cd projeto
-   docker-compose up (Criação container docker)
+   
+ - cd projeto
+ - docker-compose up (Criação container docker)
 
 ## Características
 ### Criar usuários: ```[POST] /elotech-api/user/save```
